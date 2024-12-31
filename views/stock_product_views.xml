@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="stock_product_form_view" model="ir.ui.view">
+            <field name="name">stock.product.form.view</field>
+            <field name="model">stock.product</field>
+            <field name="arch" type="xml">
+                <form string="Product Information">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="sku"/>
+                            <field name="barcode"/>
+                            <field name="warehouse_id"/>
+                            <field name="category_id"/>
+                            <field name="quantity_on_hand"/>
+                            <field name="uom_id"/>
+                            <field name="weight"/>
+                            <field name="dimensions"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- list (List) View -->
+
+        <record id="stock_product_list_view" model="ir.ui.view">
+            <field name="name">stock.product.list.view</field>
+            <field name="model">stock.product</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="barcode"/>
+                    <field name="warehouse_id"/>
+                    <field name="category_id"/>
+                    <field name="quantity"/>
+                    <field name="uom_id"/>
+                    <field name="weight"/>
+                    <field name="dimensions"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_product_kanban" model="ir.ui.view">
+            <field name="name">stock.product.kanban</field>
+            <field name="model">stock.product</field>
+            <field name="arch" type="xml">
+                <kanban string="Products">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <field name="name"/>
+                                <div>
+                                    <strong>SKU:</strong> <field name="sku"/>
+                                </div>
+                                <div>
+                                    <strong>Quantity:</strong> <field name="quantity"/>
+                                </div>
+                                <div>
+                                    <strong>Warehouse:</strong> <field name="warehouse_id"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- Action -->
+        <record id="stock_product_action" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.product</field>
+            <field name="view_mode">list,form,kanban</field>
+        </record>
+
+        <!-- Root Menu -->
+        <menuitem id="stock_root" name="Stock" sequence="2"/>
+        <!-- Submenu -->
+        <menuitem id="stock_product_menu"
+                  name="Products"
+                  parent="stock_root"
+                  action="stock_product_action"
+                  sequence="3"/>
+    </data>
+</odoo>

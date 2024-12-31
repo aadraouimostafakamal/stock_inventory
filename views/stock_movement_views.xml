@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="stock_movements_form_view" model="ir.ui.view">
+            <field name="name">stock.movements.form.view</field>
+            <field name="model">stock.movement</field>
+            <field name="arch" type="xml">
+                <form string="Stock Movements">
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="source_location_id"/>
+                            <field name="destination_location_id"/>
+                            <field name="quantity"/>
+                            <field name="max_quantity" readonly="1"/>
+                            <label string="État du mouvement:" for="state"/>
+                            <field name="state" widget="selection" nolabel="1" 
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- List View -->
+        <record id="stock_movements_list_view" model="ir.ui.view">
+            <field name="name">stock.movements.list.view</field>
+            <field name="model">stock.movement</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="product_id"/>
+                    <field name="source_location_id"/>
+                    <field name="destination_location_id"/>
+                    <field name="quantity"/>
+                    <field name="state" widget="selection"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_stock_movements_kanban" model="ir.ui.view">
+            <field name="name">stock.movements.kanban</field>
+            <field name="model">stock.movement</field>
+            <field name="arch" type="xml">
+                <kanban string="Stock Movements">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div>
+                                    <strong>Product : </strong><field name="product_id"/>
+                                </div>
+                                <div>
+                                    <strong>Source loc : </strong><field name="source_location_id"/>
+                                </div>
+                                <div>
+                                    <strong>Destination loc : </strong><field name="destination_location_id"/>
+                                </div>
+                                <div>
+                                    <strong>Quantity : </strong><field name="quantity"/>
+                                </div>
+                                <div>
+                                    <strong>State : </strong><field name="state"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="stock_movements_action" model="ir.actions.act_window">
+            <field name="name">Stock Movements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.movement</field>
+            <field name="view_mode">list,form,kanban</field>
+        </record>
+
+        <!-- Submenu -->
+        <menuitem id="stock_movements_menu" 
+                  name="Stock Movements" 
+                  parent="stock_root"
+                  action="stock_movements_action"
+                  sequence="5"/>
+    </data>
+</odoo>

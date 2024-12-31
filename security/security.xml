@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Access Control List -->
+        <record id ="module_category_stock_inventory" model="ir.module.category">
+            <field name="name">Stock Inventory</field>
+            <field name="description">Stock Inventory</field>
+            <field name="sequence">1</field>
+        </record>
+        <!-- Group -->
+        <record id="group_stock_inventory_manager" model="res.groups">
+            <field name="name">Stock Inventory Manager</field>
+            <field name="category_id" ref="module_category_stock_inventory"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">This group is for Stock Inventory Manager</field>
+        </record>
+    </data>
+</odoo>

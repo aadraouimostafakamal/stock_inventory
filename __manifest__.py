@@ -1,0 +1,22 @@
+{
+    'name': 'Stock Inventory',
+    'version': '1.0',
+    'category': 'Inventory',
+    'summary': 'Stock Inventory',
+    'description': "Get your inventory under control with this module",
+    'author': 'AADRAOUI Mostafa Kamal',
+    'depends': ['base'], 
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/stock_location_views.xml',
+        'views/product_category_views.xml',
+        'views/stock_product_views.xml',
+        'views/stock_movement_views.xml',
+        'views/stock_reordering_views.xml',
+        'views/stock_quant_views.xml',
+    ],
+    'images': [''],
+    'installable': True,
+    'application': True,
+}

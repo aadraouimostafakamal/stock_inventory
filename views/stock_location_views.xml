@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="stock_location_form_view" model="ir.ui.view">
+            <field name="name">stock.loc.form.view</field>
+            <field name="model">stock.loc</field>
+            <field name="arch" type="xml">
+                <form string="Location Information">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="usage"/>
+                            <field name="address"/>
+                            <field name="is_active"/>
+                            <field name="parent_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- list (List) View -->
+        <record id="stock_location_list_view" model="ir.ui.view">
+            <field name="name">stock.loc.list.view</field>
+            <field name="model">stock.loc</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="usage"/>
+                    <field name="address"/>
+                    <field name="is_active"/>
+                    <field name="parent_id"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_location_kanban" model="ir.ui.view">
+            <field name="name">stock.loc.kanban</field>
+            <field name="model">stock.loc</field>
+            <field name="arch" type="xml">
+                <kanban string="Locations">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div>
+                                    <strong>Name : </strong><field name="name"/>
+                                </div>
+                                <div>
+                                    <strong>Address : </strong><field name="address"/>
+                                </div>
+                                <div>
+                                    <strong>Usage : </strong><field name="usage"/>
+                                </div>
+                                <div>
+                                    <strong>Active : </strong><field name="is_active"/>
+                                </div>
+                                <div>
+                                    <strong>Parent : </strong><field name="parent_id"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="stock_location_action" model="ir.actions.act_window">
+            <field name="name">Locations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.loc</field>
+            <field name="view_mode">list,form,kanban</field>
+        </record>   
+
+        <!-- Submenu -->
+        <menuitem id="stock_locations_menu" 
+                  parent="stock_root"
+                  name="Stock Locations"
+                  action="stock_location_action" 
+                  sequence="4"/>
+    </data>
+</odoo>
