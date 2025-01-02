@@ -6,17 +6,22 @@
             <field name="name">stock.movements.form.view</field>
             <field name="model">stock.movement</field>
             <field name="arch" type="xml">
-                <form string="Stock Movements">
+                <form>
+                    <header>
+                        <button name="action_validate" 
+                                string="Validate" 
+                                type="object" 
+                                class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
                     <sheet>
                         <group>
-                            <field name="product_id"/>
-                            <field name="source_location_id"/>
-                            <field name="destination_location_id"/>
-                            <field name="quantity"/>
+                            <field name="product_id" readonly="state != 'draft'"/>
+                            <field name="source_location_id" readonly="state != 'draft'"/>
+                            <field name="destination_location_id" readonly="state != 'draft'"/>
+                            <field name="quantity" readonly="state != 'draft'"/>
                             <field name="max_quantity" readonly="1"/>
-                            <label string="État du mouvement:" for="state"/>
-                            <field name="state" widget="selection" nolabel="1" 
-                                   options="{'no_create': True, 'no_open': True}"/>
                         </group>
                     </sheet>
                 </form>
@@ -33,7 +38,7 @@
                     <field name="source_location_id"/>
                     <field name="destination_location_id"/>
                     <field name="quantity"/>
-                    <field name="state" widget="selection"/>
+                    <field name="state"/>
                 </list>
             </field>
         </record>
@@ -43,7 +48,7 @@
             <field name="name">stock.movements.kanban</field>
             <field name="model">stock.movement</field>
             <field name="arch" type="xml">
-                <kanban string="Stock Movements">
+                <kanban>
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
@@ -77,9 +82,9 @@
             <field name="view_mode">list,form,kanban</field>
         </record>
 
-        <!-- Submenu -->
-        <menuitem id="stock_movements_menu" 
-                  name="Stock Movements" 
+        <!-- Menu -->
+        <menuitem id="stock_movements_menu"
+                  name="Stock Movements"
                   parent="stock_root"
                   action="stock_movements_action"
                   sequence="5"/>
